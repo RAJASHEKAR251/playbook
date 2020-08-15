@@ -1,2 +1,15 @@
 ---
-# tasks file for ftp
+- name: Install Vsftpd
+  apt:
+      name: vsftpd
+      state: present
+
+- name: Copy config file 
+  copy:
+      src: templates/vsftpdconfig.j2
+      dest: /etc/ansible.conf
+
+- name: Service start  
+  service:
+      name: vsftpd
+      state: started
